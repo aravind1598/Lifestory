@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>நடக்கணும்னா நடந்துடும்…</title>
+<meta name="description" content="ஒரு நான்கு வருடக் காதல் கதை. படிக்கலாம், கேட்கலாம்.">
+<link href="https://fonts.googleapis.com/css2?family=Mukta+Malar:wght@400;600;700&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef2f3;--bg2:#e3eaec;--tx:#18222b;--mu:#5d6b75;--ac:#17695a;--ac2:#fff;--sd:#e8c46a;--hl:#f6e6b4;--ln:#cfd9dd;--r1:#c9d8dc;--r2:#a9c0c4;--bar:rgba(238,242,243,.88);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e171b;--bg2:#142329;--tx:#e7eeef;--mu:#93a6ad;--ac:#6fd0b3;--ac2:#08211b;--sd:#e8c46a;--hl:#3a3a22;--ln:#24363d;--r1:#17272d;--r2:#1d343b;--bar:rgba(14,23,27,.88);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e171b;--bg2:#142329;--tx:#e7eeef;--mu:#93a6ad;--ac:#6fd0b3;--ac2:#08211b;--sd:#e8c46a;--hl:#3a3a22;--ln:#24363d;--r1:#17272d;--r2:#1d343b;--bar:rgba(14,23,27,.88);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 19px/2 "Noto Serif Tamil",serif;-webkit-font-smoothing:antialiased}
+button{font-family:"Mukta Malar",sans-serif;cursor:pointer;color:inherit}
+button:focus-visible,select:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+
+/* top bar */
+#top{position:fixed;top:0;left:0;right:0;z-index:30;background:var(--bar);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:calc(env(safe-area-inset-top,0px) + 8px) 16px 8px;display:flex;align-items:center;gap:10px;font-family:"Mukta Malar",sans-serif;transform:translateY(-100%);transition:transform .3s}
+#top.show{transform:none}
+#top .t{flex:1;font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#top button{border:1px solid var(--ln);background:none;border-radius:22px;padding:6px 14px;font-size:14px}
+#prog{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--ac)}
+
+/* hero */
+.hero{position:relative;min-height:92svh;display:flex;flex-direction:column;justify-content:center;padding:72px 24px 200px;overflow:hidden;background:linear-gradient(var(--bg),var(--bg2))}
+.hero .in{max-width:760px;margin:0 auto;width:100%;position:relative;z-index:2}
+.dot{display:block;width:16px;height:16px;border-radius:50%;background:var(--sd);margin:0 0 28px;box-shadow:0 0 0 6px color-mix(in srgb,var(--sd) 28%,transparent)}
+h1{font:700 clamp(40px,11.5vw,88px)/1.22 "Noto Serif Tamil",serif;margin:0 0 18px;letter-spacing:-.01em}
+.sub{font:400 clamp(17px,4.4vw,22px)/1.7 "Mukta Malar",sans-serif;color:var(--mu);margin:0 0 34px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-size:17px;font-weight:600;border-radius:30px;padding:14px 26px;border:1.5px solid var(--ac);background:none;color:var(--ac)}
+.btn.p{background:var(--ac);color:var(--ac2)}
+.ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:210px;z-index:1}
+.ridge .a{fill:var(--r1)}.ridge .b{fill:var(--r2)}
+
+/* chapter list */
+.toc{max-width:760px;margin:0 auto;padding:56px 24px 8px}
+.toc h3{font:600 15px "Mukta Malar",sans-serif;color:var(--mu);margin:0 0 10px}
+.toc button,#drawer button{display:flex;gap:16px;align-items:baseline;width:100%;text-align:left;border:0;border-top:1px solid var(--ln);background:none;padding:14px 4px;font:400 17px/1.6 "Mukta Malar",sans-serif}
+.toc button:last-child,#drawer button:last-child{border-bottom:1px solid var(--ln)}
+.toc b,#drawer b{font:700 22px "Noto Serif Tamil",serif;color:var(--ac);min-width:22px}
+
+/* story */
+article{max-width:660px;margin:0 auto;padding:0 24px}
+.ch{padding-top:88px}
+h2{font:700 clamp(26px,6.4vw,38px)/1.5 "Noto Serif Tamil",serif;margin:0 0 30px;display:flex;flex-direction:column;gap:6px}
+h2 .no{font:600 15px "Mukta Malar",sans-serif;color:var(--ac)}
+p{margin:0 0 20px;padding:0 10px;margin-left:-10px;margin-right:-10px;border-radius:8px;transition:background .25s}
+p.on,h2.on{background:var(--hl);box-shadow:0 0 0 8px var(--hl)}
+:root[data-theme="dark"] p.on{color:#fff}
+p.q{padding-left:22px;margin-left:-12px;border-left:3px solid var(--sd)}
+p.s{font-weight:600;font-size:21px}
+.end{max-width:660px;margin:0 auto;padding:96px 24px 220px;text-align:center;font-family:"Mukta Malar",sans-serif}
+.end p{color:var(--mu);font-size:17px;padding:0;margin:0 0 20px;line-height:1.7}
+.end .dot{margin:0 auto 24px}
+
+/* player */
+#bar{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);max-width:560px;margin:0 auto;z-index:30;background:var(--bg2);border:1px solid var(--ln);border-radius:22px;padding:10px 12px;box-shadow:0 10px 30px rgba(0,0,0,.18);font-family:"Mukta Malar",sans-serif}
+#now{font-size:13px;color:var(--mu);margin:0 0 6px;padding:0 6px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5}
+#now.w{white-space:normal;color:var(--ac)}
+.ctl{display:flex;align-items:center;justify-content:center;gap:10px}
+.ctl button{border:0;border-radius:50%;width:44px;height:44px;background:none;font-size:18px;border:1px solid var(--ln)}
+.ctl #pp{width:auto;min-width:130px;border-radius:30px;background:var(--ac);color:var(--ac2);border:0;font-weight:700;font-size:16px;padding:0 22px;height:48px}
+.ctl #sp{width:auto;border-radius:22px;padding:0 12px;font-size:14px;font-weight:600}
+
+/* drawer */
+#veil{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:40;display:none}
+#drawer{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--bg);border-radius:24px 24px 0 0;padding:20px 20px calc(env(safe-area-inset-bottom,0px) + 20px);max-height:80svh;overflow:auto;transform:translateY(105%);transition:transform .3s}
+#drawer.open{transform:none}
+#drawer h3{font:700 18px "Mukta Malar",sans-serif;margin:0 0 8px}
+</style>
+</head>
+<body>
+
+<header id="top">
+<span class="t">நடக்கணும்னா நடந்துடும்…</span>
+<button type="button" id="menu">அத்தியாயங்கள்</button>
+<button type="button" id="theme" aria-label="Theme மாற்று">◐</button>
+<div id="prog"></div>
+</header>
+
+<section class="hero" id="hero">
+<div class="in">
+<span class="dot" aria-hidden="true"></span>
+<h1>நடக்கணும்னா நடந்துடும்…</h1>
+<p class="sub">ஒரு நான்கு வருடக் காதல் கதை. 6 அத்தியாயங்கள். படிக்கலாம், கேட்கலாம்.</p>
+<div class="cta">
+<button type="button" class="btn p" id="heroPlay">▶ கதையைக் கேளுங்கள்</button>
+<button type="button" class="btn" id="heroRead">படிக்கத் தொடங்குங்கள்</button>
+</div>
+</div>
+<svg class="ridge" viewBox="0 0 800 210" preserveAspectRatio="none" aria-hidden="true">
+<path class="b" d="M0 210V120L90 80 170 118 270 52 360 110 450 70 560 125 660 60 800 130V210Z"/>
+<path class="a" d="M0 210V165L110 130 210 160 330 108 430 158 540 120 650 165 740 140 800 160V210Z"/>
+</svg>
+</section>
+
+<nav class="toc" id="toc" aria-label="அத்தியாயங்கள்">
+<h3>அத்தியாயங்கள்</h3>
+<button type="button" data-go="c1"><b>1</b><span>சந்தன வாசனையில் தொடங்கிய காதல்</span></button>
+<button type="button" data-go="c2"><b>2</b><span>இரண்டு நாட்கள்… ஆயிரம் நினைவுகள்</span></button>
+<button type="button" data-go="c3"><b>3</b><span>முதல் முறையாகச் சொன்ன மூன்று வார்த்தைகள்</span></button>
+<button type="button" data-go="c4"><b>4</b><span>ஒதிமலையில் ஒரு மாலை</span></button>
+<button type="button" data-go="c5"><b>5</b><span>அந்த ஒரு வாக்கியம்</span></button>
+<button type="button" data-go="c6"><b>6</b><span>நான்கு வருடங்களுக்குப் பிறகு</span></button>
+</nav>
+
+<article id="story">
+<section class="ch" id="c1" data-title="சந்தன வாசனையில் தொடங்கிய காதல்">
+<h2 data-say="அத்தியாயம் 1. சந்தன வாசனையில் தொடங்கிய காதல்"><span class="no">அத்தியாயம் 1</span>சந்தன வாசனையில் தொடங்கிய காதல்</h2>
+<p>அந்த வயசுல எனக்குக் காதல்னா என்னன்னு முழுசா தெரியாது.</p>
+<p>ஒருத்தரைப் பார்த்ததும் ஏன் மனசு மாறுது, அவங்க பக்கத்துல இருக்கும்போது மட்டும் ஏன் நேரம் வேகமா ஓடுது, அவங்ககூடப் பேசிட்டு வந்த பிறகும் ஏன் அவங்களையே நினைச்சுட்டு இருக்கோம்னு அப்போ எனக்குப் புரியல.</p>
+<p>ஆனா, சில உணர்வுகள் நம்ம வாழ்க்கைக்குள்ள வரும்போது, அதுக்கு என்ன பேருன்னு தெரிஞ்சிருக்க வேண்டிய அவசியமே இல்ல.</p>
+<p>அப்படித்தான் என் வாழ்க்கைக்குள்ள வந்தாள் சர்விகா.</p>
+<p>அவள் எனக்கு ஒரு சாதாரணப் பொண்ணு கிடையாது. என் உறவுக்காரப் பொண்ணு. குடும்ப விசேஷங்கள்ல ஏற்கனவே பார்த்திருக்கேன். ஆனா, அன்னைக்கு அவளை நான் பார்க்கப்போற விதம் வேற மாதிரி இருக்கும்னு எனக்குத் தெரியாது.</p>
+<p>நான் பத்தாம் வகுப்பு முடிச்சுட்டு, பதினொன்றாம் வகுப்புக்குப் போறதுக்கு முன்னாடி விடுமுறையில இருந்தேன். அவளுக்கும் பத்தாம் வகுப்பு விடுமுறை.</p>
+<p>எல்லாருக்கும் அது ஒரு சாதாரண கோடை விடுமுறைதான். ஆனா, என் வாழ்க்கையிலேயே மறக்க முடியாத ஒரு நினைவை அந்த விடுமுறை எனக்குக் கொடுக்கப்போகுதுன்னு அப்போ தெரியல.</p>
+<p>அவள் எங்க வீட்டுக்கு வரப்போறான்னு தெரிஞ்சதும், அவளைக் கூட்டிட்டு வர நானே காரை எடுத்துட்டுப் போனேன்.</p>
+<p>ரொம்ப நாளைக்குப் பிறகு அவளைப் பார்க்கப்போறேன். மனசுக்குள்ள என்ன உணர்வு இருந்துச்சுன்னு அப்போ எனக்கே தெரியாது. அவளைப் பார்க்கப்போறோங்கிற ஒரு சின்ன சந்தோஷம் மட்டும் இருந்திருக்கலாம்.</p>
+<p>ஆனா, அவளை நேர்ல பார்த்த அந்த நொடி…</p>
+<p>என் மனசுக்குள்ள ஏதோ மாறிடுச்சு.</p>
+<p>அவள் கண்ணாடி முன்னாடி நின்னுட்டு சந்தனம் வச்சுட்டு இருந்தாள்.</p>
+<p class="s">அவளைப் பார்த்தேன்.</p>
+<p class="s">அவ்வளவுதான்.</p>
+<p>சினிமாவுல வர்ற மாதிரி பின்னாடி இசை எதுவும் கேட்கல. உலகமே நின்னுடுச்சுன்னு சொல்லவும் முடியாது. ஆனா, என் மனசுக்குள்ள மட்டும் ஒரு புது உணர்வு ஆரம்பிச்சுச்சு.</p>
+<p>அவளை நான் ஏற்கனவே பார்த்திருக்கேன். ஆனா, அன்னைக்குத்தான் என் மனசு அவளை வேற மாதிரி பார்த்துச்சு.</p>
+<p>அந்த நொடியிலிருந்து அவளைப் பார்க்கும்போதெல்லாம் ஏதோ ஒரு சந்தோஷம். அவள் பக்கத்துல இருக்கும்போது ஒரு நிம்மதி. அவள் பேசும்போது கேட்டுட்டே இருக்கணும் போல இருக்கும். அவள் சிரிக்கும்போது இன்னும் கொஞ்ச நேரம் அவளோடவே இருக்கணும் போல இருக்கும்.</p>
+<p class="s">அது காதலா?</p>
+<p class="s">அப்போ எனக்குத் தெரியாது.</p>
+<p>ஆனா, அந்த உணர்வு மட்டும் உண்மையா இருந்துச்சு.</p>
+</section>
+<section class="ch" id="c2" data-title="இரண்டு நாட்கள்… ஆயிரம் நினைவுகள்">
+<h2 data-say="அத்தியாயம் 2. இரண்டு நாட்கள்… ஆயிரம் நினைவுகள்"><span class="no">அத்தியாயம் 2</span>இரண்டு நாட்கள்… ஆயிரம் நினைவுகள்</h2>
+<p>அவள் எங்க வீட்டுல இருந்தது வெறும் ரெண்டு நாள்தான்.</p>
+<p>சில பேர் நம்ம வாழ்க்கையில பல வருஷம் இருந்தாலும் நமக்கு அவ்வளவு நெருக்கமாக மாட்டாங்க. இன்னும் சில பேர், ரெண்டே நாள்ல நம்ம மனசுக்குள்ள ஒரு தனி இடத்தைப் பிடிச்சிடுவாங்க.</p>
+<p>சர்விகா அப்படித்தான் எனக்கு நெருக்கமானாள்.</p>
+<p>நாங்க ரெண்டு பேரும் சேர்ந்து ரீல்ஸ் பார்த்தோம். சிரிச்சோம். ஜாலியா இருந்தோம். அவள் என்கூடப் பேசுற விதம், அவள் காட்டுன நெருக்கம், எல்லாமே எனக்கு ரொம்பச் சிறப்பா இருந்துச்சு.</p>
+<p>அந்த ரெண்டு நாளும் எனக்குச் சாதாரண நாளா தெரியல.</p>
+<p>ஒருநாள் ராத்திரி நாங்க மூணு பேரும் — நான், அவள், அவளோட தங்கச்சி — ஒரே பெட்ல தூங்கினோம்.</p>
+<p>அந்த ராத்திரி அவள் என் தோள்ல சாஞ்சு தூங்கிட்டாள்.</p>
+<p>அந்த நிமிஷம் எனக்கு என்ன உணர்வு வந்துச்சுன்னு வார்த்தைகளால சொல்லவே முடியாது.</p>
+<p>சில நேரம் நமக்குப் பிடிச்சவங்க நம்ம பக்கத்துல அமைதியா இருந்தாலே போதும். அவங்ககிட்ட எதுவும் சொல்ல வேண்டியதில்ல. அவங்களுக்கும் நம்ம மேல அதே உணர்வு இருக்கான்னு கேட்கவும் வேண்டியதில்ல. அவங்க பக்கத்துல இருக்கிற அந்தச் சின்ன நேரமே நமக்கு ரொம்பப் பெருசா தெரியும்.</p>
+<p>அந்த ராத்திரி எனக்கு அப்படித்தான் இருந்துச்சு.</p>
+<p>அவளுக்கு அது ஒரு சாதாரண ராத்திரியா இருந்திருக்கலாம். ஆனா, எனக்கு அது பல வருஷங்களுக்குப் பிறகும் நினைவுல இருக்கப்போற ராத்திரியா மாறிடுச்சு.</p>
+<p>அவள் எதுவும் சொல்லல. நானும் எதுவும் சொல்லல.</p>
+<p>ஆனா, அந்த ரெண்டு நாள் முடிஞ்சு அவள் கிளம்பினப்போ, என் மனசுக்குள்ள இருந்த ஏதோ ஒண்ணு அவளோடவே போயிடுச்சு.</p>
+<p>அவள் போன பிறகுதான் அவளை இன்னும் அதிகமா நினைக்க ஆரம்பிச்சேனா, இல்ல அவள் இருக்கும்போதே அவளை இழந்துடுவோமோன்னு பயந்தேனா, எனக்கே தெரியல.</p>
+<p>ஆனா, அன்னையிலிருந்து அவளைப் பார்க்கும்போதெல்லாம் என் மனசுக்குள்ள ஒரு சின்ன சந்தோஷம்.</p>
+<p>அவளோட கண்கள் என்னைப் பார்க்குதான்னு கவனிக்க ஆரம்பிச்சேன். குடும்ப விசேஷங்கள்ல அவள் வந்திருக்காளான்னு தேட ஆரம்பிச்சேன்.</p>
+<p>அவளுக்கு அது தெரியுமா தெரியாதான்னு எனக்குத் தெரியாது.</p>
+<p>ஆனா, என்னைப் பொறுத்தவரைக்கும் அந்த ரெண்டு நாள் ஒரு முடிவு கிடையாது.</p>
+<p class="s">அது ஒரு தொடக்கம்.</p>
+</section>
+<section class="ch" id="c3" data-title="முதல் முறையாகச் சொன்ன மூன்று வார்த்தைகள்">
+<h2 data-say="அத்தியாயம் 3. முதல் முறையாகச் சொன்ன மூன்று வார்த்தைகள்"><span class="no">அத்தியாயம் 3</span>முதல் முறையாகச் சொன்ன மூன்று வார்த்தைகள்</h2>
+<p class="s">நாட்கள் நகர்ந்தன.</p>
+<p>குடும்ப விசேஷங்கள் வந்துச்சு. நாங்க ஒருத்தரை ஒருத்தர் பார்த்துக்கிட்டோம். சில நேரம் கண்கள் சந்திச்சுது. சில நேரம் ஒரு சின்னச் சிரிப்பு. சில நேரம் பேசாமலேயே கடந்து போயிடுவோம்.</p>
+<p>என் மனசுக்குள்ள மட்டும் அந்த உணர்வு கொஞ்சம் கொஞ்சமா வளர்ந்துட்டே இருந்துச்சு.</p>
+<p>ஒரு கட்டத்துல, மனசுக்குள்ள வச்சிருந்ததைச் சொல்லாம இருக்க முடியல.</p>
+<p>அவளைப் பார்த்துட்டே இருந்த ஒரு நாள்ல, நானே அவகிட்ட சொல்லிட்டேன்.</p>
+<p class="q s">“I love you.”</p>
+<p>அந்த மூணு வார்த்தையும் சொன்ன பிறகு, அவள் என்ன பதில் சொல்வாள்னு எதிர்பார்த்தேன். ஒருவேளை அவளும் தன் மனசுல இருக்கிறதைச் சொல்வாள்னு நினைச்சேன்.</p>
+<p class="s">ஆனா, அவள் சிரிச்சாள்.</p>
+<p>எதுவும் சொல்லாம அங்கிருந்து போயிட்டாள்.</p>
+<p>அந்தச் சிரிப்புக்கு என்ன அர்த்தம்?</p>
+<p>அவளுக்கும் என்னைப் பிடிச்சிருந்துச்சா? என்ன பதில் சொல்றதுன்னு தெரியலையா? இல்ல, என்னை அந்த மாதிரி அவள் நினைக்கவே இல்லையா?</p>
+<p>அப்போ எனக்குத் தெரியல. இப்பவும் அந்தச் சம்பவத்தை நினைச்சா, இந்தக் கேள்விகளுக்கெல்லாம் தெளிவான பதில் கிடையாது.</p>
+<p>ஆனா, நான் மட்டும் அவளை உண்மையா காதலிக்க ஆரம்பிச்சிருந்தேன்.</p>
+<p>அதுக்குப் பிறகுதான் பிரதீக்ஷா என் கதைக்குள்ள வந்தாள்.</p>
+<p>அவள் சர்விகாவோட உறவுக்காரச் சகோதரி. என்கூட நல்லாப் பேசுவாள். என் விஷயங்களை அவகிட்ட பகிர்ந்துக்க முடிஞ்சுது. சர்விகாகிட்ட நேரடியாப் பேச முடியாத நேரங்கள்ல, பிரதீக்ஷா வழியா அவளைப் பத்தித் தெரிஞ்சுக்கிற ஒரு வாய்ப்பு எனக்குக் கிடைச்சுது.</p>
+<p>சர்விகா வீட்டுல அவளுக்குப் போன் பயன்படுத்தக் கட்டுப்பாடு இருந்துச்சு. அதனால, பிரதீக்ஷா அவங்க அம்மா போன்ல இருந்து பேசும்போது, நானும் அந்தக் காலுல இருப்பேன். அவங்க ரெண்டு பேரும் பேசுவாங்க; நானும் அப்பப்போ ஏதாவது பேசுவேன்.</p>
+<p>அப்படி நாலைஞ்சு தடவை பேசினோம். அந்தச் சின்னச் சின்ன உரையாடல்கள் எனக்கு ரொம்பப் பெரிய விஷயமா இருந்துச்சு.</p>
+<p>ஆனா, அதுக்குள்ளேயே ஒரு பிரச்சினை வந்து சேர்ந்துச்சு.</p>
+<p>ஒருநாள் எங்களுக்குள்ள உறவுமுறை எப்படின்னு பேச்சு வந்துச்சு. அப்போ, நான் அவளுக்குப் பெரியம்மா பையன் முறைன்னு சொல்லப்பட்டுச்சு.</p>
+<p>அதைச் சர்விகா கேட்டதும், அவளுக்குள்ள ஒரு குழப்பம் வந்துடுச்சு.</p>
+<p class="q">“அவன் எனக்குப் பெரியம்மா பையனா? அப்படின்னா அவனை எப்படிக் காதலிக்க முடியும்? எப்படிக் கல்யாணம் பண்ணிக்க முடியும்?”னு அவள் பிரதீக்ஷாகிட்ட கேட்டதா எனக்குத் தெரிய வந்துச்சு.</p>
+<p>அந்த வார்த்தைகள் எனக்குள்ள எவ்வளவு குழப்பத்தை ஏற்படுத்துச்சுன்னு சொல்லவே முடியாது.</p>
+<p>நான் மட்டும் அவளைக் காதலிக்கிறேன்னு நினைச்சுட்டு இருந்த நேரத்துல, உறவுமுறைங்கிற ஒரு விஷயம் எங்க ரெண்டு பேருக்கும் நடுவுல ஒரு கேள்விக்குறியா நின்னுச்சு.</p>
+<p>அதுக்குப் பிறகு நேரடியாப் பேசுறதும் குறைஞ்சு போச்சு.</p>
+<p>முதல் ரெண்டு வருஷம், குடும்ப விசேஷங்கள்ல பார்த்துக்கிறது மட்டும்தான். கண்கள் சந்திக்கும். நான் அவளைப் பார்ப்பேன். அவளும் என்னைப் பார்ப்பாள். ஆனா, மனசுக்குள்ள இருந்ததைப் பத்தி ரெண்டு பேரும் வெளிப்படையாப் பேச முடியாத ஒரு தூரம் இருந்துச்சு.</p>
+<p>அதுக்குப் பிறகு இன்னும் ரெண்டு வருஷம். அந்தத் தூரம் அப்படியே இருந்துச்சு. இன்ஸ்டாகிராம்ல அவங்க அம்மா ஐடி வழியா என் ஸ்டோரிகளை அவள் பார்ப்பாள்னு நினைச்சேன். நான் ஸ்டோரி வைப்பேன். அவள் பார்த்தாளான்னு எதிர்பார்த்துட்டே இருப்பேன். சில நேரம் கேள்வி கேட்குற ஸ்டோரி வைப்பேன். அவள் “Yes” இல்ல “No”னு பதில் சொல்வாள். அதுக்குப் பிறகு மறுபடியும் அமைதி.</p>
+<p>நாலு வருஷம் கடந்துடுச்சு.</p>
+<p>நான் மட்டும் இன்னும் அவளைக் காதலிச்சுட்டு இருக்கேன்.</p>
+<p>போன வாரம் ஒதிமலைக்குப் போனப்போ அவகிட்ட பேசினேன். அவள் என்கிட்ட நல்லாவே பேசுறாள். நான் இன்னும் அவகிட்ட “I love you”னு சொல்றேன்.</p>
+<p>ஆனா, அவள் அதுக்குப் பதில் சொல்றதில்ல.</p>
+<p>அவள் சொல்ற ஒரு வார்த்தை மட்டும் என் மனசுக்குள்ள திரும்பத் திரும்ப ஒலிச்சுட்டே இருக்கு:</p>
+<p class="q">“நடக்கணும்னா நடந்துடும்.”</p>
+<p>அந்த ஒரு வார்த்தைக்குள்ள நான் நம்பிக்கையைப் பார்க்கிறேன். ஒருவேளை ஒருநாள் எல்லாம் சரியாகிடுமோன்னு நினைக்கிறேன்.</p>
+<p>ஆனா, அதே வார்த்தைக்குள்ள ஒரு பயமும் இருக்கு.</p>
+<p>ஒருவேளை அவள் என்னை ஒரு உறவுக்காரப் பையனா மட்டுமே பார்த்தா என்ன பண்றது?</p>
+<p>ஒருவேளை அவ மனசுல எனக்கான காதல் இல்லைன்னா?</p>
+<p>இந்தக் கேள்விகளுக்கு இன்னும் எனக்குப் பதில் கிடைக்கல.</p>
+</section>
+<section class="ch" id="c4" data-title="ஒதிமலையில் ஒரு மாலை">
+<h2 data-say="அத்தியாயம் 4. ஒதிமலையில் ஒரு மாலை"><span class="no">அத்தியாயம் 4</span>ஒதிமலையில் ஒரு மாலை</h2>
+<p>போன வாரம் குடும்பத்தோட ஒதிமலைக்குப் போகணும்னு சொன்னதுமே, என் மனசு முதல்ல கேட்ட கேள்வி ஒண்ணுதான்: “அவளும் வருவாளா?”</p>
+<p class="s">அவள் வந்திருந்தாள்.</p>
+<p>நாலு வருஷத்துல அவள் நிறைய மாறியிருந்தாள். உயரமா, அமைதியா, கொஞ்சம் பொறுப்பான பொண்ணா. ஆனா சிரிக்கும்போது மட்டும் அன்னைக்குப் பார்த்த அதே சந்தன வாசனைப் பொண்ணாத்தான் இருந்தாள்.</p>
+<p>மலைக்கு மேல ஏறிப்போற வழியில எல்லாரும் முன்னாடி போயிட்டாங்க. நானும் அவளும் கொஞ்சம் பின்னாடி மெதுவா நடந்தோம். பேசிக்கிட்டே நடந்தோம். படிப்பு, ஃப்ரெண்ட்ஸ், அவளோட காலேஜ், என்னோட வேலை, எல்லாத்தையும் பத்தி. சாதாரணமா. ஆனா எனக்கு அந்தச் சாதாரணமே பெரிய விஷயமா இருந்துச்சு.</p>
+<p>ஒரு இடத்துல நின்னு அவள் மலைக்குக் கீழ இருந்த பள்ளத்தாக்கைப் பார்த்துக்கிட்டு இருந்தாள். காத்துல அவள் முடி லேசா பறந்துச்சு.</p>
+<p>அப்போ நான் சொன்னேன், மெதுவா, தைரியத்தை வரவழைச்சுக்கிட்டு:</p>
+<p class="q">“I love you, சர்விகா. இன்னும் அதே மாதிரிதான்.”</p>
+<p>அவள் என்னைத் திரும்பிப் பார்த்தாள். அந்தக் கண்கள்ல கோபம் இல்லை. வெறுப்பு இல்லை. ஆனா பதிலும் இல்லை. ஒரு நிமிஷம் அமைதியா இருந்தாள்.</p>
+<p>அப்புறம் லேசா சிரிச்சுட்டு, பள்ளத்தாக்கைப் பார்த்துக்கிட்டே சொன்னாள்:</p>
+<p class="q">“நடக்கணும்னா நடந்துடும்.”</p>
+<p class="s">அவ்வளவுதான்.</p>
+<p>அதுக்கப்புறம் நாங்க ரெண்டு பேரும் எதுவும் பேசல. கீழ இருந்து யாரோ கூப்பிட்டாங்க. அவள் முன்னாடி நடந்தாள். நான் பின்னாடி நடந்தேன்.</p>
+<p>அன்னைக்கு ராத்திரி முழுக்க அந்த ஒரு வாக்கியம்தான் என் தலைக்குள்ள ஓடிட்டு இருந்துச்சு.</p>
+</section>
+<section class="ch" id="c5" data-title="அந்த ஒரு வாக்கியம்">
+<h2 data-say="அத்தியாயம் 5. அந்த ஒரு வாக்கியம்"><span class="no">அத்தியாயம் 5</span>அந்த ஒரு வாக்கியம்</h2>
+<p class="q">“நடக்கணும்னா நடந்துடும்.”</p>
+<p class="s">இதுக்கு என்ன அர்த்தம்?</p>
+<p>சில நாள் இதை நம்பிக்கையா எடுத்துக்கிறேன். அவள் “முடியாது”ன்னு சொல்லலையே. “இல்லை”ன்னு சொல்லலையே. கதவை மூடலையே. அந்தக் கதவு லேசா திறந்தே இருக்குன்னு நினைச்சுக்கிறேன்.</p>
+<p>சில நாள் அதே வாக்கியம் பயமா மாறுது. இது ஒரு நாகரிகமான “இல்லை”யா இருக்குமோ? என்னை வருத்தப்படுத்தாம இருக்கணும்னு அவள் சொன்ன ஒரு மென்மையான மறுப்பா இருக்குமோ? அவளுக்கு என்ன சொல்றதுன்னு தெரியாம, தப்பிக்கிறதுக்காகச் சொன்னதா இருக்குமோ?</p>
+<p>உண்மையைச் சொல்லணும்னா, எனக்குத் தெரியல.</p>
+<p>ஒண்ணு மட்டும் புரிஞ்சுக்கிட்டேன். “நடக்கணும்னா நடந்துடும்”ங்கிற வார்த்தைல ஒரு பாதி விதி மேல இருக்கிற நம்பிக்கை. இன்னொரு பாதி, “நான் இதுல எதுவும் செய்யப்போறதில்ல”ங்கிற விலகல்.</p>
+<p>அவள் அந்த வாக்கியத்தைச் சொல்லிட்டாள். இனி அதுக்கு அர்த்தம் கொடுக்கிறது என் கையில இல்ல.</p>
+<p>ஆனா, நான் என்ன செய்யப்போறேங்கிறது என் கையில இருக்கு.</p>
+<p>அதே நேரத்துல இன்னொண்ணும் யோசிக்க ஆரம்பிச்சேன். நாலு வருஷமா நான் ஒரு பதிலுக்காகவே காத்திருந்தேன். ஆனா அவள் மனசுல என்ன இருக்குன்னு தெரியாமலேயே, என் வாழ்க்கை முழுக்க அவளைச் சுத்தியே ஓடிட்டு இருக்கா? என் படிப்பு, என் கனவுகள், என் நண்பர்கள், அதெல்லாம் எங்க?</p>
+<p>காதல் அழகுதான். ஆனா காதலுக்காகவே நின்னுபோறது வேற.</p>
+</section>
+<section class="ch" id="c6" data-title="நான்கு வருடங்களுக்குப் பிறகு">
+<h2 data-say="அத்தியாயம் 6. நான்கு வருடங்களுக்குப் பிறகு"><span class="no">அத்தியாயம் 6</span>நான்கு வருடங்களுக்குப் பிறகு</h2>
+<p>இந்த நாலு வருஷத்துல நான் நிறைய மாறியிருக்கேன்.</p>
+<p>பதினொன்றாம் வகுப்புல அவளை நினைச்சுக்கிட்டே பாடத்தை விட்டுட்டுப் பேனாவைக் கடிச்ச பையன் இல்ல நான் இப்போ. இன்னைக்கு எனக்குன்னு ஒரு பாதை இருக்கு. எனக்குன்னு ஒரு இலக்கு இருக்கு. அவளைப் பத்தின நினைவு இன்னும் இருக்கு. ஆனா அது என் முழு வாழ்க்கையா இல்ல.</p>
+<p>அவள் மேல இருக்கிற அன்பு பொய்யில்லை. நாலு வருஷம் ஆனாலும் அது குறையல. ஆனா அந்த அன்பு எனக்குச் சில விஷயங்களைக் கத்துக் கொடுத்திருக்கு:</p>
+<p>பொறுமையா இருக்கணும். யாரையும் கட்டாயப்படுத்தக் கூடாது. ஒருத்தரோட மௌனத்துக்கும் மதிப்புக் கொடுக்கணும். அன்பு பதிலுக்காகக் காத்திருக்கும், ஆனா பிச்சை எடுக்காது.</p>
+<p>அவளுக்கு நேரம் வேணும்னா, நான் நேரம் கொடுப்பேன். உறவுமுறைங்கிற விஷயம் அவளுக்குள்ள இன்னும் ஒரு கேள்வியா இருந்தா, அதை யோசிக்க அவளுக்கு உரிமை இருக்கு. அவள் “இல்லை”ன்னு சொன்னாலும், அதை மரியாதையோட ஏத்துக்கிற பக்குவம் எனக்கு இருக்கணும்.</p>
+<p>இன்னைக்கு ராத்திரி என் போன்ல அவளோட பேரைப் பார்த்தேன். “Last seen” இல்ல. ஸ்டேட்டஸ் இல்ல. ஒண்ணுமே இல்ல. வெறும் அமைதி.</p>
+<p>ஆனா அந்த அமைதியோட நான் சமாதானமா இருக்கேன்.</p>
+<p>ஒருவேளை ஒருநாள் அவள் வந்து “நான் தயார்”ன்னு சொல்லலாம். ஒருவேளை சொல்லாமலும் போகலாம். எதுவா இருந்தாலும், சந்தன வாசனையோட தொடங்கின இந்தக் கதை எனக்கு ஒரு அழகான நினைவு. என்னை வளர்த்த நினைவு.</p>
+<p>நான் காத்திருக்கிறேன். ஆனா வாழ்க்கையை நிறுத்திவிட்டுக் காத்திருக்கல.</p>
+<p>அவள் சொன்ன மாதிரியே: நடக்கணும்னா நடந்துடும்.</p>
+<p>நடந்தா, அது என் அதிர்ஷ்டம்.</p>
+<p>நடக்காட்டியும், இந்தக் காதல் உண்மையா இருந்துச்சு. அது போதும்.</p>
+</section>
+</article>
+
+<div class="end">
+<span class="dot" aria-hidden="true"></span>
+<p>இந்தக் கதை இன்னும் முடியல.</p>
+<button type="button" class="btn" id="again">மீண்டும் முதலிலிருந்து</button>
+</div>
+
+<div id="bar" role="group" aria-label="Audio">
+<p id="now">கதையைக் கேட்க ▶ அழுத்துங்கள்</p>
+<div class="ctl">
+<button type="button" id="prev" aria-label="முந்தைய அத்தியாயம்">⏮</button>
+<button type="button" id="pp">▶ படி</button>
+<button type="button" id="next" aria-label="அடுத்த அத்தியாயம்">⏭</button>
+<button type="button" id="sp" aria-label="வேகம்">1×</button>
+</div>
+</div>
+
+<div id="veil"></div>
+<aside id="drawer" aria-label="அத்தியாயங்கள்">
+<h3>அத்தியாயங்கள்</h3>
+<button type="button" data-go="c1"><b>1</b><span>சந்தன வாசனையில் தொடங்கிய காதல்</span></button>
+<button type="button" data-go="c2"><b>2</b><span>இரண்டு நாட்கள்… ஆயிரம் நினைவுகள்</span></button>
+<button type="button" data-go="c3"><b>3</b><span>முதல் முறையாகச் சொன்ன மூன்று வார்த்தைகள்</span></button>
+<button type="button" data-go="c4"><b>4</b><span>ஒதிமலையில் ஒரு மாலை</span></button>
+<button type="button" data-go="c5"><b>5</b><span>அந்த ஒரு வாக்கியம்</span></button>
+<button type="button" data-go="c6"><b>6</b><span>நான்கு வருடங்களுக்குப் பிறகு</span></button>
+</aside>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var synth=window.speechSynthesis;
+var ps=[].slice.call(document.querySelectorAll('#story h2,#story p'));
+var chs=[].slice.call(document.querySelectorAll('.ch'));
+var starts=chs.map(function(c){return ps.indexOf(c.querySelector('h2'))});
+var i=0,state='stop',tok=0,speeds=[.85,1,1.2],sl=['0.85×','1×','1.2×'],si=1;
+var pp=$('#pp'),now=$('#now'),top_=$('#top'),prog=$('#prog');
+
+/* voice */
+function tv(){var v=synth?synth.getVoices():[];for(var k=0;k<v.length;k++){if(v[k].lang.replace('_','-').toLowerCase().indexOf('ta')===0)return v[k]}return null}
+function chk(){if(!synth){now.className='w';now.textContent='இந்த browser-ல voice வசதி இல்ல. Chrome-ல திறங்க.';return}
+if(synth.getVoices().length&&!tv()){now.className='w';now.textContent='தமிழ் குரல் இந்த போன்ல இல்ல. Settings → Text-to-speech-ல Tamil install பண்ணுங்க.'}}
+if(synth){synth.onvoiceschanged=chk;setTimeout(chk,600)}else chk();
+
+/* reading */
+function clr(){ps.forEach(function(e){e.classList.remove('on')})}
+function chIndex(k){var n=0;for(var j=0;j<starts.length;j++){if(starts[j]<=k)n=j}return n}
+function label(){var c=chs[chIndex(i)];now.className='';now.textContent='அத்தியாயம் '+(chIndex(i)+1)+'. '+c.dataset.title}
+function say(){
+if(i>=ps.length){stop();return}
+clr();var el=ps[i];el.classList.add('on');label();
+el.scrollIntoView({block:'center',behavior:'smooth'});
+var t=++tok,u=new SpeechSynthesisUtterance(el.dataset.say||el.textContent);
+u.lang='ta-IN';var v=tv();if(v)u.voice=v;u.rate=speeds[si];
+u.onend=function(){if(t===tok&&state==='play'){i++;say()}};
+synth.speak(u)}
+function play(from){
+if(!synth){chk();return}
+synth.cancel();if(typeof from==='number')i=from;
+state='play';pp.textContent='⏸ நிறுத்து';say()}
+function stop(){tok++;if(synth)synth.cancel();state='stop';clr();i=0;pp.textContent='▶ படி';now.className='';now.textContent='கதையைக் கேட்க ▶ அழுத்துங்கள்'}
+pp.onclick=function(){
+if(state==='stop')play(0);
+else if(state==='play'){synth.pause();state='pause';pp.textContent='▶ தொடர்'}
+else{synth.resume();state='play';pp.textContent='⏸ நிறுத்து'}};
+function jump(n){n=Math.max(0,Math.min(chs.length-1,n));play(starts[n])}
+$('#prev').onclick=function(){var c=chIndex(i);jump(i>starts[c]+1?c:c-1)};
+$('#next').onclick=function(){jump(chIndex(i)+1)};
+$('#sp').onclick=function(){si=(si+1)%speeds.length;this.textContent=sl[si];if(state==='play')play(i)};
+ps.forEach(function(e,k){e.addEventListener('click',function(){if(state!=='stop')play(k)})});
+
+/* navigation */
+function go(id){var e=document.getElementById(id);if(e)e.scrollIntoView({block:'start'})}
+function closeD(){$('#drawer').classList.remove('open');$('#veil').style.display='none'}
+document.querySelectorAll('[data-go]').forEach(function(b){b.onclick=function(){closeD();go(b.dataset.go)}});
+$('#menu').onclick=function(){$('#drawer').classList.add('open');$('#veil').style.display='block'};
+$('#veil').onclick=closeD;
+$('#heroPlay').onclick=function(){play(0)};
+$('#heroRead').onclick=function(){go('c1')};
+$('#again').onclick=function(){stop();window.scrollTo({top:0})};
+$('#theme').onclick=function(){
+var r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches;
+r.dataset.theme=d?'light':'dark'};
+
+/* scroll progress */
+function onS(){
+var h=document.documentElement,max=h.scrollHeight-h.clientHeight,y=window.scrollY||h.scrollTop;
+prog.style.width=(max>0?Math.min(100,y/max*100):0)+'%';
+top_.classList.toggle('show',y>window.innerHeight*.5)}
+window.addEventListener('scroll',onS,{passive:true});onS();
+})();
+</script>
+</body>
+</html>
